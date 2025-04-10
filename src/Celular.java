@@ -1,0 +1,61 @@
+public class Celular extends Producto implements Vendible{
+
+    protected String capcacidadBateria;
+    protected String camaraResolucion;
+
+    public Celular() {
+    }
+
+    public Celular(String capcacidadBateria, String camaraResolucion) {
+        this.capcacidadBateria = capcacidadBateria;
+        this.camaraResolucion = camaraResolucion;
+    }
+
+    public Celular(String nombre, int precio, int cantidadStock, String capcacidadBateria, String camaraResolucion) {
+        super(nombre, precio, cantidadStock);
+        this.capcacidadBateria = capcacidadBateria;
+        this.camaraResolucion = camaraResolucion;
+    }
+
+    public String getCapcacidadBateria() {
+        return capcacidadBateria;
+    }
+
+    public void setCapcacidadBateria(String capcacidadBateria) {
+        this.capcacidadBateria = capcacidadBateria;
+    }
+
+    public String getCamaraResolucion() {
+        return camaraResolucion;
+    }
+
+    public void setCamaraResolucion(String camaraResolucion) {
+        this.camaraResolucion = camaraResolucion;
+    }
+
+    @Override
+    public String toString() {
+        return "Celular{" +
+                "capcacidadBateria='" + capcacidadBateria + '\'' +
+                ", camaraResolucion='" + camaraResolucion + '\'' +
+                ", nombre='" + nombre + '\'' +
+                ", precio=" + precio +
+                ", cantidadStock=" + cantidadStock +
+                '}';
+    }
+
+    @Override
+    public void mostrarDetalles(){
+
+    }
+
+    @Override
+    public double calcularPrecioVenta(int cantidad) {
+        double total = precio * cantidad;
+        if (cantidad > cantidad_Minima_Descuento) {
+            total = total-(total*tasa_Descuento);
+        }
+        return total;
+    }
+
+}
