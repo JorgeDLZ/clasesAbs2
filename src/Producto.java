@@ -48,4 +48,7 @@ public abstract class Producto {
 
     public abstract void mostrarDetalles();
 
+    public void reducirStock(int cantidad) {
+        this.cantidadStock -= cantidad;
+    }
 }

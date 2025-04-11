@@ -3,6 +3,7 @@ public class Cliente {
     protected String nombreCl;
     protected String correo;
     protected ArrayList<Producto> productosComprados = new ArrayList<>();
+    protected double totalGastado = 0;
 
     public Cliente() {
     }
@@ -47,17 +48,29 @@ public class Cliente {
     }
 
 
-    public void comprarProducto(Producto producto, int cantidad){
-        for (Producto x:productosComprados){
-            if(x instanceof Laptop){
-                System.out.println(x);
-            }
+    public void comprarProducto(Producto producto, int cantidad) {
+        if (producto.getCantidadStock() < cantidad) {
+            System.out.println("No hay suficiente stock de " + producto.getNombre());
+            return;
         }
 
+        if (producto instanceof Vendible) {
+            Vendible item = (Vendible) producto;
+            double total = item.calcularPrecioVenta(cantidad);
+            totalGastado += total;
+            producto.reducirStock(cantidad);
+            productosComprados.add(producto);
+
         }
-
     }
-    public static void mostrarCompra(){
 
+    public void mostrarCompra() {
+        System.out.println("\nCompras de " + nombreCl + ":");
+        for (Producto compra : productosComprados) {
+
+            System.out.println(compra.getNombre() + " - " + compra.getCantidadStock() + " unidades restantes");
+        }
+        System.out.println("Total gastado: $" + totalGastado);
     }
+}
 

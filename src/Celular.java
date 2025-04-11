@@ -45,11 +45,6 @@ public class Celular extends Producto implements Vendible{
     }
 
     @Override
-    public void mostrarDetalles(){
-
-    }
-
-    @Override
     public double calcularPrecioVenta(int cantidad) {
         double total = precio * cantidad;
         if (cantidad > cantidad_Minima_Descuento) {
@@ -57,5 +52,14 @@ public class Celular extends Producto implements Vendible{
         }
         return total;
     }
-
+    @Override
+    public void mostrarDetalles() {
+        System.out.println("Celular:");
+        System.out.println("Nombre: " + nombre);
+        System.out.println("Precio: $" + precio);
+        System.out.println("Stock: " + cantidadStock + " unidades");
+        System.out.println("Capacidad batería: " + capcacidadBateria);
+        System.out.println("Resolución cámara: " + camaraResolucion);
+    }
 }
+
